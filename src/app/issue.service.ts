@@ -6,9 +6,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class IssueService {
 
-  uri = 'http://localhost:4000';
+  uri =  'http://api.tvmaze.com/api/singlesearch/shows?q=';
 
   constructor(private http: HttpClient) { }
+
+  searchForShow(show) {
+    return this.http.get(`${this.uri}${show}`);
+  }
 
   getIssues() {
     return this.http.get(`${this.uri}/issues`);
