@@ -1,9 +1,21 @@
 <div>
   <br>
   <mat-card>
-    <button mat-raised-button color="primary" routerLink="/create">Create New Issue</button>
+    <button mat-raised-button color="primary" routerLink="/create">Search for Show</button>
     <br><br>
-    <mat-divider></mat-divider>
+    <mat-divider>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Favorite food" value="Sushi">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+          </form>
+    </mat-divider>
+
+    
     <br>
     <table mat-table [dataSource]="issues">
       <ng-container matColumnDef="title">
