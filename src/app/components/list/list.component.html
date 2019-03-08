@@ -1,39 +1,42 @@
 <div>
   <br>
   <mat-card>
-    <button mat-raised-button color="primary" routerLink="/create">Search for Show</button>
+    <form class="example-form">
+     <mat-form-field class="example-full-width">
+       <input matInput placeholder="Type here" formControlName="show" #show >
+     </mat-form-field>
+    
+   </form>
+    <!-- <button mat-raised-button color="accent" >Search for Show</button>      -->
+    <br><br>
+
+    <button type="submit" (click)="searchForShow(show.value)"
+      
+     mat-raised-button color="primary">Search</button>
     <br><br>
     <mat-divider>
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Favorite food" value="Sushi">
-            </mat-form-field>
-          
-            <mat-form-field class="example-full-width">
-              <textarea matInput placeholder="Leave a comment"></textarea>
-            </mat-form-field>
-          </form>
     </mat-divider>
-
     
+    <!-- name, genres, officialSite -->
+        
     <br>
-    <table mat-table [dataSource]="issues">
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
-        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    <table mat-table [dataSource]="data">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element"> {{name}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="responsible">
-        <th mat-header-cell *matHeaderCellDef>Responsible</th>
-        <td mat-cell *matCellDef="let element"> {{element.responsible}} </td>
+      <ng-container matColumnDef="genre">
+        <th mat-header-cell *matHeaderCellDef>Genre</th>
+        <td mat-cell *matCellDef="let element"> {{genre}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="severity">
-        <th mat-header-cell *matHeaderCellDef>Severity</th>
-        <td mat-cell *matCellDef="let element"> {{element.severity}} </td>
+      <ng-container matColumnDef="officialSite">
+        <th mat-header-cell *matHeaderCellDef>Official Site</th>
+        <td mat-cell *matCellDef="let element"> {{officialSite}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="status">
+      <!-- <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell *matCellDef="let element"> {{element.status}} </td>
       </ng-container>
@@ -44,7 +47,7 @@
           <button mat-button color="primary" (click)="editIssue(element._id)">Edit</button>
           <button mat-button color="warn" (click)="deleteIssue(element._id)">Delete</button>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
