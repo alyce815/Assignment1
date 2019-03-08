@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 
 import { Issue } from '../../issue.model';
+import { Show } from "../../show.model"
 import { IssueService } from '../../issue.service';
 
 @Component({
@@ -13,23 +14,39 @@ import { IssueService } from '../../issue.service';
 export class ListComponent implements OnInit {
 
   issues: Issue[];
-  displayedColumns = ['title', 'responsible', 'severity', 'status', 'actions'];
+  shows: Show[];
+  displayedColumns = ['name', 'genre', 'officialSite'
+  // , 'status', 'actions'
+];
 
   constructor(private issueService: IssueService, private router: Router) { }
 
   ngOnInit() {
-    this.fetchIssues();
+    console.log('Hey there, if List Component mounts')
   }
 
-  fetchIssues() {
-    this.issueService
-      .getIssues()
-      .subscribe((data: Issue[]) => {
-        this.issues = data;
-        console.log('Data requested ...');
-        // console.log(this.issues);
-      });
+  searchForShow(show) {
+    this.issueService.searchForShow(show)
+    // .subscribe(() => {
+    //   this.router.navigate(['/list']);
+    // });
+    .subscribe((data: Show[]) => {
+            this.shows = data;
+            console.log('Data requested ...');
+            console.log(this.shows);
+          });
   }
+
+  // fetchIssues() {
+  //   this.issueService
+  //     .getIssues()
+  //     .subscribe((data: Issue[]) => {
+  //       this.issues = data;
+  //       console.log('Data requested ...');
+  //       console.log(this.issues);
+  //     });
+  // }
+
 
   editIssue(id) {
     this.router.navigate([`/edit/${id}`]);
